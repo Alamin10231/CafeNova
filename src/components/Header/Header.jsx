@@ -5,7 +5,9 @@ import { HotDeal } from "../Home/HotDeal";
 import { ElementOfCoffee } from "../Home/ElementOfCoffee";
 import CoffeeMachineOffer from "../Home/CoffeeMachineOffer";
 import MenuCoffee from "../Home/MenuCoffee";
-import Alamingpt from "../Home/Alamingpt";
+import Chatbot from "../../Shared/Chatbot";
+
+
 
 export const Header = () => {
   return (
@@ -18,6 +20,7 @@ export const Header = () => {
       <ElementOfCoffee></ElementOfCoffee>
       <MenuCoffee></MenuCoffee>
       {/* <Alamingpt></Alamingpt> */}
+      <Chatbot></Chatbot>
     </div>
   );
 };

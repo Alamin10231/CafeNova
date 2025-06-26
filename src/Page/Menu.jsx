@@ -1,29 +1,61 @@
 import React from "react";
 import menupic from "../../public/images/paperlist.png";
+import { NavLink, Outlet } from "react-router-dom";
 
 export const Menu = () => {
   return (
     <div className="relative min-h-screen">
-      {/* Blurred background image */}
+      {/* Blurred background */}
       <div className="absolute inset-0 menucvrpic blur-sm" />
-
-      {/* Optional dark overlay */}
       <div className="absolute inset-0 bg-black/30" />
 
-      {/* Content layer */}
-      <div className="relative z-10 flex flex-col items-center pt-20 text-white text-center px-4">
-        {/* Image */}
-        <img
-          src={menupic}
-          alt="Menu"
-          className="w-40 h-auto max-w-[200px] mb-6"
-        />
+      {/* Centered content */}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-white text-center">
+        {/* Paper image with everything inside */}
+        <div className="relative w-[90vw] max-w-[600px] h-[750px] rounded overflow-hidden shadow-xl">
+          {/* Background Image */}
+          <img
+            src={menupic}
+            alt="Menu"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
 
-        {/* Text */}
-        <h1 className="text-3xl font-bold mb-2">Welcome to Our Menu</h1>
-        <p className="text-lg max-w-xl">
-          Discover delicious options made just for you. Scroll down to explore
-          our full list of items and specials!
+          {/* Overlay Content */}
+          <div className="absolute inset-0 flex flex-col items-center justify-start p-6 pt-24 text-black overflow-y-auto">
+            {/* Navigation Links */}
+            <ul className="flex flex-wrap gap-4 justify-center mb-2">
+              {["choclate", "coffee", "sweets", "tea"].map((item) => (
+                <NavLink
+                  key={item}
+                  to={item}
+                  className={({ isActive }) =>
+                    `px-4 py-1 rounded-full border transition-all duration-200 ${
+                      isActive
+                        ? "bg-green-600 text-white border-green-700"
+                        : "bg-white/80 text-black border-gray-400 hover:bg-green-100 hover:text-green-700"
+                    }`
+                  }
+                >
+                  <li className="capitalize font-medium">{item}</li>
+                </NavLink>
+              ))}
+            </ul>
+
+            {/* Nested route content */}
+            <div className="overflow-y-auto w-full px-2 text-center">
+              <Outlet />
+            </div>
+
+            {/* Optional Button */}
+            <button className="mt-4 text-white bg-green-600 px-4 py-2 rounded-full hover:bg-green-700">
+              Read More
+            </button>
+          </div>
+        </div>
+
+        {/* Text outside paper */}
+        <p className="mt-6 max-w-md text-lg text-white">
+          Explore our delicious offerings below.
         </p>
       </div>
     </div>
