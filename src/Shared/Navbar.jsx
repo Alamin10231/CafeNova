@@ -1,16 +1,30 @@
-import { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useContext, useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+  const { user, logout } = useContext(AuthContext);
   const [open, setopen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const currentpath = location.pathname;
-
+  const handleLogout = () => {
+    logout()
+      .then(() => {
+        toast.success("Logged out successfully");
+        navigate("login");
+      })
+      .catch((err) => {
+        toast.error("Logout failed");
+        console.error(err);
+      });
+  };
   return (
     <div
-      className={`navbar shadow-sm  text-white fixed top-0 z-50 px-[30px] bg-[#5c3e3e] py-2
-    ${currentpath === "/" ? "bg-transparent" : "bg-[#5c3e3e]"}
-    `}
+      className={`navbar shadow-sm text-white fixed top-0 z-50 px-[30px] py-2 ${
+        currentpath === "/" ? "bg-transparent" : "bg-[#5c3e3e]"
+      }`}
     >
       {/* Navbar Start */}
       <div className="navbar-start">
@@ -63,15 +77,55 @@ const Navbar = () => {
                 Menu
               </NavLink>
             </li>
-    
             <li>
-              <NavLink to="/moments">Moments</NavLink>
+              <NavLink
+                to="/moments"
+                className={({ isActive }) =>
+                  isActive ? "text-yellow-400" : ""
+                }
+              >
+                Moments
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/contact">Contact</NavLink>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  isActive ? "text-yellow-400" : ""
+                }
+              >
+                Contact
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/askai">Ask AI</NavLink>
+              <NavLink
+                to="/askai"
+                className={({ isActive }) =>
+                  isActive ? "text-yellow-400" : ""
+                }
+              >
+                Ask AI
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  isActive ? "text-yellow-400" : ""
+                }
+              >
+                Login
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/signup"
+                className={({ isActive }) =>
+                  isActive ? "text-yellow-400" : ""
+                }
+              >
+                Signup
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -81,13 +135,13 @@ const Navbar = () => {
       </div>
 
       {/* Navbar Center */}
-      <div className="navbar-center hidden lg:flex ">
+      <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-1 text-lg">
           <li>
             <NavLink
               to="/"
               className={({ isActive }) =>
-                isActive ? "border-b-2 border-white " : "text-white"
+                isActive ? "border-b-2 border-white" : "text-white"
               }
             >
               Home
@@ -113,7 +167,6 @@ const Navbar = () => {
               Menu
             </NavLink>
           </li>
-
           <li>
             <NavLink
               to="/moments"
@@ -148,10 +201,34 @@ const Navbar = () => {
       </div>
 
       {/* Navbar End */}
-      <div className="navbar-end">
-        <a className="btn bg-[#6B4F4F] text-white border-none hover:bg-[#5c3e3e]">
-          Order Now
-        </a>
+      {/* Navbar End */}
+      <div className="navbar-end space-x-2 hidden lg:flex ">
+        {user ? (
+          <>
+            <span className="text-white mr-2">{user.email}</span>
+            <button
+              onClick={handleLogout}
+              className="btn btn-sm bg-transparent border border-white text-white hover:bg-white hover:text-[#5c3e3e]"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <NavLink
+              to="/login"
+              className="btn btn-sm bg-transparent border border-white text-white hover:bg-white hover:text-[#5c3e3e]"
+            >
+              Login
+            </NavLink>
+            <NavLink
+              to="/signup"
+              className="btn btn-sm bg-transparent border border-white text-white hover:bg-white hover:text-[#5c3e3e]"
+            >
+              Signup
+            </NavLink>
+          </>
+        )}
       </div>
     </div>
   );

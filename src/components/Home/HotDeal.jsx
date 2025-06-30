@@ -2,6 +2,7 @@ import React from "react";
 import pic1 from "../../../public/images/Caramel Latte.jpg"
 import pic2 from "../../../public/images/Hazelnut Mocha.jpg"
 import pic3 from "../../../public/images/Iced Vanilla Cold Brew.jpg"
+import { Link, NavLink } from "react-router-dom";
 
 export const HotDeal = () => {
   return (
@@ -27,9 +28,11 @@ export const HotDeal = () => {
                 <p className="text-sm text-[#6e4f4f] mb-4">
                   Rich, creamy, and topped with our signature caramel drizzle.
                 </p>
+                 <NavLink to="order">
                 <button className="px-4 py-2 bg-[#5c3e3e] text-white rounded hover:bg-[#3e2e2e]">
                   Order Now
                 </button>
+                </NavLink>
               </div>
             </div>
 
@@ -47,9 +50,11 @@ export const HotDeal = () => {
                 <p className="text-sm text-[#6e4f4f] mb-4">
                   Bold espresso with silky chocolate and hazelnut bliss.
                 </p>
+                 <NavLink to="order">
                 <button className="px-4 py-2 bg-[#5c3e3e] text-white rounded hover:bg-[#3e2e2e]">
                   Order Now
                 </button>
+                </NavLink>
               </div>
             </div>
 
@@ -67,9 +72,11 @@ export const HotDeal = () => {
                 <p className="text-sm text-[#6e4f4f] mb-4">
                   Refreshing and smooth with a touch of sweet vanilla.
                 </p>
+                <NavLink to="order">
                 <button className="px-4 py-2 bg-[#5c3e3e] text-white rounded hover:bg-[#3e2e2e]">
                   Order Now
                 </button>
+                </NavLink>
               </div>
             </div>
           </div>

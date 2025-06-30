@@ -13,12 +13,18 @@ import { Coffee } from "./components/Menu/Coffee";
 import { Tea } from "./components/Menu/Tea";
 import { Sweets } from "./components/Menu/Sweets";
 import Chatbot from "./Shared/Chatbot";
-
+import LoginPage from "./components/Home/LoginPage";
+import SignUpPage from "./components/Home/SignUppage";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import NotFound from "./components/NotFound/NotFound";
+import OrderPage from "./Page/OrderPage";
+import OrderSuccess from "./components/OrderSuccess/OrderSuccess";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    errorElement: <NotFound></NotFound>,
     children: [
       {
         path: "/", // ← চাইলে /slides রেখেই দাও
@@ -31,6 +37,32 @@ export const router = createBrowserRouter([
       {
         path: "/ourstory", // ← চাইলে /slides রেখেই দাও
         element: <OurStory></OurStory>,
+      },
+      {
+        path: "login",
+        element: <LoginPage></LoginPage>,
+      },
+      {
+        path: "signup",
+        element: <SignUpPage></SignUpPage>,
+      },
+      {
+        path: "order",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <OrderPage></OrderPage>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "ordersuccess",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <OrderSuccess></OrderSuccess>
+          </PrivateRoute>
+        ),
       },
       {
         path: "menu", // ← চাইলে /slides রেখেই দাও
