@@ -1,0 +1,64 @@
+[
+  {
+    "category": "Coffee",
+    "items": [
+      {
+        "name": "Espresso",
+        "image": "/images/Caramel Latte.jpg",
+        "price": 150,
+        "description": "Strong and bold shot of coffee."
+      },
+      {
+        "name": "Cappuccino",
+        "image": "/images/cappuccino.jpg",
+        "price": 180,
+        "description": "Espresso with steamed milk and foam."
+      }
+    ]
+  },
+  {
+    "category": "Tea",
+    "items": [
+      {
+        "name": "Green Tea",
+        "image": "/images/greentea.jpg",
+        "price": 100,
+        "description": "Refreshing and healthy green tea."
+      },
+      {
+        "name": "Milk Tea",
+       "image": "/images/milktea.jpg",
+        "price": 120,
+        "description": "Traditional milk tea with rich flavor."
+      }
+    ]
+  },
+  {
+    "category": "Chocolate",
+    "items": [
+      {
+        "name": "Hot Chocolate",
+       "image": "/images/hotchoclate.jpg",
+        "price": 160,
+        "description": "Creamy hot chocolate with marshmallows."
+      }
+    ]
+  },
+  {
+    "category": "Sweets",
+    "items": [
+      {
+        "name": "Cheesecake",
+       "image": "/images/milktea.jpg",
+        "price": 250,
+        "description": "Soft and creamy classic cheesecake."
+      },
+      {
+        "name": "Donut",
+        "image": "/images/iced-latte.jpg",
+        "price": 80,
+        "description": "Sugar glazed soft donut."
+      }
+    ]
+  }
+]

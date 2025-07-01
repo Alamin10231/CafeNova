@@ -5,7 +5,7 @@ const OrderSuccess = () => {
   const order = location.state;
 
   return (
-    <div className="min-h-screen bg-[#fff7f2] p-10 text-[#5c3e3e]">
+    <div className="min-h-screen bg-[#fff7f2] p-10 py-32 text-[#5c3e3e]">
       <h2 className="text-3xl font-bold mb-4 text-center">
         🎉 Order Confirmed!
       </h2>
@@ -17,7 +17,7 @@ const OrderSuccess = () => {
         {order.items.map((item) => (
           <div key={item.id} className="flex items-center gap-4 border-b pb-3">
             <img
-              src={item.img}
+              src={item.image}
               alt={item.name}
               className="w-20 h-20 object-cover rounded"
             />

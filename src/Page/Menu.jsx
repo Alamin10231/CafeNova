@@ -1,36 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import menupic from "../../public/images/paperlist.png";
 import { NavLink, Outlet } from "react-router-dom";
 
 export const Menu = () => {
-  const [menuItems, setMenuItems] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/menuCards")
-      .then((res) => res.json())
-      .then((data) => setMenuItems(data))
-      .catch((error) => console.error("Error loading menu items:", error));
-  }, []);
-
   return (
     <div className="relative min-h-screen">
+      {/* Blurred background */}
       <div className="absolute inset-0 menucvrpic blur-sm" />
       <div className="absolute inset-0 bg-black/30" />
 
+      {/* Centered content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-white text-center">
+        {/* Paper image with everything inside */}
         <div className="relative w-[90vw] max-w-[600px] h-[750px] rounded overflow-hidden shadow-xl">
+          {/* Background Image */}
           <img
             src={menupic}
             alt="Menu"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
+          {/* Overlay Content */}
           <div className="absolute inset-0 flex flex-col items-center justify-start p-6 pt-24 text-black overflow-y-auto">
+            {/* Navigation Links */}
             <ul className="flex flex-wrap gap-4 justify-center mb-2">
-              {menuItems.map((item) => (
+              {["choclate", "coffee", "sweets", "tea"].map((item) => (
                 <NavLink
-                  key={item._id}
-                  to={item.name}
+                  key={item}
+                  to={item}
                   className={({ isActive }) =>
                     `px-4 py-1 rounded-full border transition-all duration-200 ${
                       isActive
@@ -39,21 +36,24 @@ export const Menu = () => {
                     }`
                   }
                 >
-                  <li className="capitalize font-medium">{item.name}</li>
+                  <li className="capitalize font-medium">{item}</li>
                 </NavLink>
               ))}
             </ul>
 
+            {/* Nested route content */}
             <div className="overflow-y-auto w-full px-2 text-center">
               <Outlet />
             </div>
 
+            {/* Optional Button */}
             <button className="mt-4 text-white bg-green-600 px-4 py-2 rounded-full hover:bg-green-700">
               Read More
             </button>
           </div>
         </div>
 
+        {/* Text outside paper */}
         <p className="mt-6 max-w-md text-lg text-white">
           Explore our delicious offerings below.
         </p>

@@ -99,6 +99,16 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
+                to="/addcards"
+                className={({ isActive }) =>
+                  isActive ? "text-yellow-400" : ""
+                }
+              >
+                Add Cards
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
                 to="/askai"
                 className={({ isActive }) =>
                   isActive ? "text-yellow-400" : ""
@@ -189,6 +199,16 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
+              to="/addcards"
+              className={({ isActive }) =>
+                isActive ? "border-b-2 border-white" : "text-white"
+              }
+            >
+              Add Card
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/askai"
               className={({ isActive }) =>
                 isActive ? "border-b-2 border-white" : "text-white"
@@ -205,7 +225,7 @@ const Navbar = () => {
       <div className="navbar-end space-x-2 hidden lg:flex ">
         {user ? (
           <>
-            <span className="text-white mr-2">{user.email}</span>
+            <span className="text-white mr-2">{user.displayName}</span>
             <button
               onClick={handleLogout}
               className="btn btn-sm bg-transparent border border-white text-white hover:bg-white hover:text-[#5c3e3e]"

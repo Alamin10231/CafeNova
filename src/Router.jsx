@@ -19,6 +19,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import NotFound from "./components/NotFound/NotFound";
 import OrderPage from "./Page/OrderPage";
 import OrderSuccess from "./components/OrderSuccess/OrderSuccess";
+import AddCard from "./Page/AddCard";
 
 export const router = createBrowserRouter([
   {
@@ -47,23 +48,44 @@ export const router = createBrowserRouter([
         element: <SignUpPage></SignUpPage>,
       },
       {
-        path: "order",
+        path: "addcards",
         element: (
           <PrivateRoute>
-            {" "}
-            <OrderPage></OrderPage>
+            <AddCard></AddCard>
           </PrivateRoute>
         ),
       },
       {
-        path: "ordersuccess",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <OrderSuccess></OrderSuccess>
-          </PrivateRoute>
-        ),
+        path: "order",
+        children: [
+          {
+            index: true,
+            element: (
+              <PrivateRoute>
+                <OrderPage />
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: "ordersuccess",
+            element: (
+              <PrivateRoute>
+                <OrderSuccess />
+              </PrivateRoute>
+            ),
+          },
+        ],
       },
+
+      // {
+      //   path: "ordersuccess",
+      //   element: (
+      //     <PrivateRoute>
+      //       {" "}
+      //       <OrderSuccess></OrderSuccess>
+      //     </PrivateRoute>
+      //   ),
+      // },
       {
         path: "menu", // ← চাইলে /slides রেখেই দাও
         element: <Menu></Menu>,
