@@ -18,7 +18,7 @@ export const Header = () => {
       <HotDeal></HotDeal>
       <CoffeeMachineOffer></CoffeeMachineOffer>
       <ElementOfCoffee></ElementOfCoffee>
-      <MenuCoffee></MenuCoffee>
+      {/* <MenuCoffee></MenuCoffee> */}
       {/* <Alamingpt></Alamingpt> */}
       <Chatbot></Chatbot>
     </div>

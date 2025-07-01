@@ -10,6 +10,7 @@ const AddCard = () => {
     description: "",
     category: "Coffee",
   });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -18,21 +19,30 @@ const AddCard = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await axios.post("http://localhost:5000/menuCards", form);
       alert("Card added successfully!");
-      navigate("/order"); // Go back to OrderPage
+      setForm({
+        name: "",
+        price: "",
+        image: "",
+        description: "",
+        category: "Coffee",
+      });
+      navigate("/order");
     } catch (error) {
       console.error("Error adding card:", error);
+      alert("Failed to add card. Try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-[#fff8f3] p-4">
       <div className="w-full max-w-md bg-white p-6 shadow rounded">
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          Add New Menu Card
-        </h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">Add New Menu Card</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             name="name"
@@ -42,6 +52,7 @@ const AddCard = () => {
             value={form.name}
             onChange={handleChange}
             required
+            disabled={loading}
           />
           <input
             name="price"
@@ -51,6 +62,7 @@ const AddCard = () => {
             value={form.price}
             onChange={handleChange}
             required
+            disabled={loading}
           />
           <input
             name="image"
@@ -60,6 +72,7 @@ const AddCard = () => {
             value={form.image}
             onChange={handleChange}
             required
+            disabled={loading}
           />
           <textarea
             name="description"
@@ -67,12 +80,14 @@ const AddCard = () => {
             className="textarea textarea-bordered w-full"
             value={form.description}
             onChange={handleChange}
+            disabled={loading}
           ></textarea>
           <select
             name="category"
             className="select select-bordered w-full"
             value={form.category}
             onChange={handleChange}
+            disabled={loading}
           >
             <option value="Coffee">Coffee</option>
             <option value="Tea">Tea</option>
@@ -81,9 +96,10 @@ const AddCard = () => {
           </select>
           <button
             type="submit"
-            className="btn bg-[#5c3e3e] text-white w-full hover:bg-[#3e2a2a]"
+            disabled={loading}
+            className="btn bg-[#5c3e3e] text-white w-full hover:bg-[#3e2a2a] disabled:opacity-50"
           >
-            Add Card
+            {loading ? "Adding..." : "Add Card"}
           </button>
         </form>
       </div>

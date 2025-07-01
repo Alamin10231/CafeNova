@@ -1,5 +1,6 @@
 import React from "react";
-import moment from '../../public/images/momentpic.jpg'
+import momentImg from '../../public/images/momentpic.jpg';
+
 const Moment = () => {
   return (
     <section className="py-16 bg-[#fef9f4] text-[#3e2e2e] my-10">
@@ -10,7 +11,7 @@ const Moment = () => {
         </p>
         <div className="relative group max-w-4xl mx-auto overflow-hidden rounded-2xl shadow-xl">
           <img
-            src={moment}
+            src={momentImg}
             alt="Cafe moment"
             className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
           />

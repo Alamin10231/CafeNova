@@ -1,9 +1,15 @@
 import React from "react";
+import { motion } from "framer-motion";
 import blogimg from "../../../public/images/mainright.jpg";
 
 const BlogPost = () => {
   return (
-    <div className="bg-[#3E2C2C] text-white py-16 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10">
+    <motion.div
+      initial={{ opacity: 0 }}           // start invisible
+      animate={{ opacity: 1 }}           // animate to visible
+      transition={{ duration: 1 }}       // animation duration 1 second
+      className="bg-[#3E2C2C] text-white py-16 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10"
+    >
       {/* Left Side: Text Content */}
       <div className="md:w-1/2 space-y-6">
         <p className="uppercase tracking-widest text-yellow-400 text-sm">
@@ -30,7 +36,7 @@ const BlogPost = () => {
           className="rounded-lg shadow-lg w-full h-auto object-cover"
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
